@@ -12,8 +12,9 @@ class Service() : Serializable{
     var databaseKey:String = ""
     var etat:Int = 0
     var userKey:String = ""
+    var volunteer: String = ""
 
-    constructor(user: String, adresse: String, tel: String, service: String, dateDemande: String, databaseKey: String, etat: Int, userKey:String) : this() {
+    constructor(user: String, adresse: String, tel: String, service: String, dateDemande: String, databaseKey: String, etat: Int, userKey:String, volunteer: String) : this() {
         this.user = user
         this.adresse = adresse
         this.tel = tel
@@ -22,6 +23,7 @@ class Service() : Serializable{
         this.databaseKey = databaseKey
         this.etat = etat
         this.userKey = userKey
+        this.volunteer = volunteer
     }
 
     constructor(user: String, adresse: String, tel: String, service: String) : this() {

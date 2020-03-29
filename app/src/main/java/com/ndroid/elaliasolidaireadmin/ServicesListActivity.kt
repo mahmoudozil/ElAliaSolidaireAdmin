@@ -1,5 +1,6 @@
 package com.ndroid.elaliasolidaireadmin
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -55,7 +56,8 @@ class ServicesListActivity : AppCompatActivity() {
                                 dateDemande = value.dateDemande,
                                 databaseKey = it.key!!,
                                 etat = value.etat,
-                                userKey = userKey!!
+                                userKey = userKey!!,
+                                volunteer = value.volunteer
                             )
                         )
                     servicesAdapter.notifyDataSetChanged()

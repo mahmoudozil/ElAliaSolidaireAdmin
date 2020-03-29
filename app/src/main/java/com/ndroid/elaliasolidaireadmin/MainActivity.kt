@@ -1,5 +1,6 @@
 package com.ndroid.elaliasolidaireadmin
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         if(item.itemId == R.id.itemLogout) {
             val auth = FirebaseAuth.getInstance()
             auth.signOut()
+            getSharedPreferences("volunteer_data", Context.MODE_PRIVATE).edit().clear().apply()
             finish()
             startActivity(Intent(this, LoginActivity::class.java))
         }

@@ -1,5 +1,6 @@
 package com.ndroid.elaliasolidaireadmin
 
+import android.content.Context
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -23,6 +24,7 @@ class ServiceDetailsActivity : AppCompatActivity() {
         tvAdresse.text = serviceData.adresse
         tvTel.text = serviceData.tel
         tvServices.text = serviceData.service
+        val volunteer = getSharedPreferences("volunteer_data", Context.MODE_PRIVATE).getString("volunteer_email", "").toString()
 
         Log.e("etat: ", "${serviceData.etat}")
 
@@ -35,6 +37,11 @@ class ServiceDetailsActivity : AppCompatActivity() {
             tvState.text = "مؤكد"
             btnConfirm.visibility = View.GONE
             btnCancel.visibility = View.GONE
+            if(!serviceData.volunteer.equals(volunteer)) {
+                btnDone.visibility = View.GONE
+            } else {
+                btnDone.visibility = View.VISIBLE
+            }
         } else if (serviceData.etat == -1) {
             tvState.text = "ملغي"
             tvState.setTextColor(Color.parseColor("#FF0000"))
@@ -52,17 +59,20 @@ class ServiceDetailsActivity : AppCompatActivity() {
         btnConfirm.setOnClickListener {
             tvState.text = "مؤكد"
             database.child("etat").setValue(1)
+            database.child("volunteer").setValue(volunteer)
             btnConfirm.visibility = View.GONE
             btnCancel.visibility = View.GONE
             btnDone.visibility = View.VISIBLE
+            finish()
         }
 
         btnDone.setOnClickListener {
-            tvState.text = "تم الإصال"
+            tvState.text = "تم الإيصال"
             database.child("etat").setValue(2)
             btnConfirm.visibility = View.GONE
             btnCancel.visibility = View.GONE
             btnDone.visibility = View.GONE
+            finish()
         }
 
         btnCancel.setOnClickListener {

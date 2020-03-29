@@ -1,5 +1,6 @@
 package com.ndroid.elaliasolidaireadmin
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -46,6 +47,10 @@ class LoginActivity : AppCompatActivity() {
 
                         if (task.isSuccessful) {
                             // Sign in success, update UI with the signed-in user's information
+                            val sharedPreferences = getSharedPreferences("volunteer_data", Context.MODE_PRIVATE)
+                            val editor =  sharedPreferences.edit()
+                            editor.putString("volunteer_email", login)
+                            editor.apply()
                             Log.d("LoginActivity", "signInWithEmailAndPassword:success")
 
                             startActivity(Intent(this, MainActivity::class.java))
