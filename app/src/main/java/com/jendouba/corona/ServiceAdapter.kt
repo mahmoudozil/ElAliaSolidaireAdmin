@@ -3,12 +3,14 @@ package com.jendouba.corona
 import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.ndroid.admin.R
+import com.jendouba.corona.R
 import com.jendouba.corona.ServiceDetailsActivity
+import kotlinx.android.synthetic.main.activity_service_details.*
 import kotlin.collections.ArrayList
 
 class ServiceAdapter(var context: Context) : BaseAdapter() {
@@ -26,11 +28,13 @@ class ServiceAdapter(var context: Context) : BaseAdapter() {
         var tvService : TextView = convertView.findViewById(R.id.tvServices)
         var tvDate : TextView = convertView.findViewById(R.id.tvDate)
         var tvUser : TextView = convertView.findViewById(R.id.tvUser)
+        var serviceState : TextView = convertView.findViewById(R.id.serviceState)
 
         val selectedService = this.servicesList[position]
-        tvService.text = selectedService.service
+        //tvService.text = selectedService.service
         tvDate.text = selectedService.dateDemande
         tvUser.text = selectedService.user
+        serviceState.text = getState(selectedService.etat)
 
         convertView.setOnClickListener {
             val intent = Intent(context, ServiceDetailsActivity::class.java)
@@ -41,6 +45,20 @@ class ServiceAdapter(var context: Context) : BaseAdapter() {
 
         return convertView
     }
+
+    fun getState(state: Int): String {
+        if (state == 0) {
+            return "في إنتظار التأكيد"
+        } else if (state == 1) {
+            return "مؤكد"
+        } else if (state == -1) {
+            return "ملغي"
+        } else {
+            return "تم الإيصال"
+        }
+    }
+
+
 
     override fun getItem(position: Int): Any {
         return this.servicesList[position]

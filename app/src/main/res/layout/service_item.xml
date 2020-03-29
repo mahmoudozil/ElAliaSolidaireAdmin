@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/itemRootLayout"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="100dp"
     android:orientation="vertical"
     android:padding="6dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="88dp"
         android:background="@drawable/edit_text_border"
         android:orientation="vertical"
         android:paddingLeft="8dp"
@@ -42,19 +42,35 @@
 
         </RelativeLayout>
 
-
-        <TextView
-            android:id="@+id/tvServices"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginBottom="2dp"
-            android:fontFamily="@font/almarai"
-            android:gravity="right"
-            android:layoutDirection="rtl"
-            android:text=""
-            android:textDirection="rtl"
-            android:textSize="18sp" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp">
 
+            <TextView
+                android:id="@+id/tvServices"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="2dp"
+                android:fontFamily="@font/almarai"
+                android:layoutDirection="rtl"
+                android:text="اضغط هنا لإظهار التفاصيل"
+                android:textDirection="rtl"
+                android:textSize="14sp" />
 
+            <TextView
+                android:id="@+id/serviceState"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginBottom="2dp"
+                android:fontFamily="@font/almarai"
+                android:layoutDirection="rtl"
+                android:text=""
+                android:textDirection="rtl"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

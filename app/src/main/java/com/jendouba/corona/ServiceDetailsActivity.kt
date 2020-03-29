@@ -9,9 +9,11 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import com.google.firebase.database.FirebaseDatabase
-import com.ndroid.admin.R
+import com.jendouba.corona.R
 import com.jendouba.corona.Service
 import kotlinx.android.synthetic.main.activity_service_details.*
+import kotlinx.android.synthetic.main.activity_service_details.tvServices
+import kotlinx.android.synthetic.main.service_item.*
 
 class ServiceDetailsActivity : AppCompatActivity() {
 
@@ -50,7 +52,7 @@ class ServiceDetailsActivity : AppCompatActivity() {
             btnConfirm.visibility = View.GONE
             btnCancel.visibility = View.GONE
             btnDone.visibility = View.GONE
-        }else if (serviceData.etat == 2) {
+        } else if (serviceData.etat == 2) {
             tvState.text = "تم الإيصال"
             btnConfirm.visibility = View.GONE
             btnCancel.visibility = View.GONE
