@@ -9,15 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.ndroid.com.jendouba.corona.admin.LoginActivity">
+        <activity android:name="com.jendouba.corona.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.ndroid.com.jendouba.corona.admin.ServiceDetailsActivity" />
-        <activity android:name="com.ndroid.com.jendouba.corona.admin.ServicesListActivity" />
-        <activity android:name="com.ndroid.com.jendouba.corona.admin.MainActivity"></activity>
+        <activity android:name="com.jendouba.corona.ServiceDetailsActivity" />
+        <activity android:name="com.jendouba.corona.ServicesListActivity" />
+        <activity android:name="com.jendouba.corona.MainActivity"></activity>
     </application>
 
 </manifest>

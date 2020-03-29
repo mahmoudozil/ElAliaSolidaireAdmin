@@ -1,4 +1,4 @@
-package com.ndroid.elaliasolidaire
+package com.jendouba.corona
 
 import android.content.Context
 import android.content.Intent

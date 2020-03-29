@@ -1,4 +1,4 @@
-package com.ndroid.elaliasolidaire
+package com.jendouba.corona
 
 import java.io.Serializable
 

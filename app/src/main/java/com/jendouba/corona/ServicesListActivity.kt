@@ -6,8 +6,8 @@ import android.view.MenuItem
 import android.view.View
 import com.google.firebase.database.*
 import com.ndroid.admin.R
-import com.ndroid.elaliasolidaire.Service
-import com.ndroid.elaliasolidaire.ServiceAdapter
+import com.jendouba.corona.Service
+import com.jendouba.corona.ServiceAdapter
 import kotlinx.android.synthetic.main.activity_services_list.*
 
 class ServicesListActivity : AppCompatActivity() {

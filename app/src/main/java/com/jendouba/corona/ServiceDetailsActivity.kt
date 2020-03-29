@@ -10,7 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import com.google.firebase.database.FirebaseDatabase
 import com.ndroid.admin.R
-import com.ndroid.elaliasolidaire.Service
+import com.jendouba.corona.Service
 import kotlinx.android.synthetic.main.activity_service_details.*
 
 class ServiceDetailsActivity : AppCompatActivity() {

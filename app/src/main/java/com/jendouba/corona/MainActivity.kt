@@ -18,6 +18,13 @@ class MainActivity : AppCompatActivity() {
 
         //supportActionBar?.hide()
 
+        val email = getSharedPreferences(
+            "volunteer_data",
+            Context.MODE_PRIVATE
+        ).getString("volunteer_email", "").toString()
+
+        welcome.setText(" Welcome " + email.subSequence(0,email.lastIndexOf("@")))
+
         btnMyServices.setOnClickListener {
             startActivity(Intent(this, ServicesListActivity::class.java))
         }
