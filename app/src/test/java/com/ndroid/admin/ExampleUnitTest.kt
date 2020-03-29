@@ -1,4 +1,4 @@
-package com.ndroid.elaliasolidaireadmin
+package com.ndroid.admin
 
 import org.junit.Test
 

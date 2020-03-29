@@ -1,4 +1,4 @@
-package com.ndroid.elaliasolidaireadmin
+package com.ndroid.admin
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

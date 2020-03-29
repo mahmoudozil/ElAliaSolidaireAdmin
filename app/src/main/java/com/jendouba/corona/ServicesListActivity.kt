@@ -1,11 +1,11 @@
-package com.ndroid.elaliasolidaireadmin
+package com.jendouba.corona
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import com.google.firebase.database.*
+import com.ndroid.admin.R
 import com.ndroid.elaliasolidaire.Service
 import com.ndroid.elaliasolidaire.ServiceAdapter
 import kotlinx.android.synthetic.main.activity_services_list.*

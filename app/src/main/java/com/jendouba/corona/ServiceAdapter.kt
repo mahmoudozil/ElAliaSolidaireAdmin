@@ -1,19 +1,14 @@
 package com.ndroid.elaliasolidaire
 
-import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.res.Resources
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.google.firebase.database.FirebaseDatabase
-import com.ndroid.elaliasolidaireadmin.R
-import com.ndroid.elaliasolidaireadmin.ServiceDetailsActivity
-import java.util.*
+import com.ndroid.admin.R
+import com.jendouba.corona.ServiceDetailsActivity
 import kotlin.collections.ArrayList
 
 class ServiceAdapter(var context: Context) : BaseAdapter() {

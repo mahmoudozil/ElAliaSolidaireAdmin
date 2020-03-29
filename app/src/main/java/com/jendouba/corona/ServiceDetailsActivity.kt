@@ -1,6 +1,7 @@
-package com.ndroid.elaliasolidaireadmin
+package com.jendouba.corona
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import com.google.firebase.database.FirebaseDatabase
+import com.ndroid.admin.R
 import com.ndroid.elaliasolidaire.Service
 import kotlinx.android.synthetic.main.activity_service_details.*
 
@@ -49,7 +51,7 @@ class ServiceDetailsActivity : AppCompatActivity() {
             btnCancel.visibility = View.GONE
             btnDone.visibility = View.GONE
         }else if (serviceData.etat == 2) {
-            tvState.text = "تم الإصال"
+            tvState.text = "تم الإيصال"
             btnConfirm.visibility = View.GONE
             btnCancel.visibility = View.GONE
             btnDone.visibility = View.GONE
@@ -64,6 +66,7 @@ class ServiceDetailsActivity : AppCompatActivity() {
             btnCancel.visibility = View.GONE
             btnDone.visibility = View.VISIBLE
             finish()
+            startActivity(Intent(this, ServicesListActivity::class.java))
         }
 
         btnDone.setOnClickListener {
@@ -73,6 +76,7 @@ class ServiceDetailsActivity : AppCompatActivity() {
             btnCancel.visibility = View.GONE
             btnDone.visibility = View.GONE
             finish()
+            startActivity(Intent(this, ServicesListActivity::class.java))
         }
 
         btnCancel.setOnClickListener {
@@ -80,6 +84,7 @@ class ServiceDetailsActivity : AppCompatActivity() {
             tvState.setTextColor(Color.parseColor("#FF0000"))
             database.child("etat").setValue(-1)
             finish()
+            startActivity(Intent(this, ServicesListActivity::class.java))
         }
 
     }
