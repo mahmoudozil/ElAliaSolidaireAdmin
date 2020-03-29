@@ -86,7 +86,7 @@ class ServiceDetailsActivity : AppCompatActivity() {
             tvState.setTextColor(Color.parseColor("#FF0000"))
             database.child("etat").setValue(-1)
             finish()
-            startActivity(Intent(this, ServicesListActivity::class.java))
+            startActivity(Intent(this, ServicesListActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
         }
 
     }

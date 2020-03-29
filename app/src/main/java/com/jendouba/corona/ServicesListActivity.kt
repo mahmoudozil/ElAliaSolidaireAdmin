@@ -2,12 +2,10 @@ package com.jendouba.corona
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import com.google.firebase.database.*
-import com.jendouba.corona.R
-import com.jendouba.corona.Service
-import com.jendouba.corona.ServiceAdapter
 import kotlinx.android.synthetic.main.activity_services_list.*
 
 class ServicesListActivity : AppCompatActivity() {
@@ -24,6 +22,8 @@ class ServicesListActivity : AppCompatActivity() {
         servicesList.adapter = servicesAdapter
         val database = FirebaseDatabase.getInstance().reference
 
+
+
         database.addChildEventListener(object : ChildEventListener {
             override fun onCancelled(error: DatabaseError) { // Failed to read value
 
@@ -39,29 +39,40 @@ class ServicesListActivity : AppCompatActivity() {
 
             override fun onChildAdded(dataSnapshot: DataSnapshot, previousChildName: String?) {
                 val userKey = dataSnapshot.key
-                dataSnapshot.child("services").children.forEach {
-                    val value = it.getValue(Service::class.java)!!
+                Log.d("children" , "e")
+                var nb = 0
 
-                    progressBar.visibility = View.GONE
-                    tvNoService.visibility = View.GONE
-                    servicesList.visibility = View.VISIBLE
-                    // -1 canceled
-                    if (value.etat != -1)
-                        servicesData.add(
-                            Service(
-                                user = value.user,
-                                adresse = value.adresse,
-                                service = value.service,
-                                tel = value.tel,
-                                dateDemande = value.dateDemande,
-                                databaseKey = it.key!!,
-                                etat = value.etat,
-                                userKey = userKey!!,
-                                volunteer = value.volunteer
+                    dataSnapshot.child("services").children.forEach {
+                        val value = it.getValue(Service::class.java)!!
+                        Log.d("value", value.adresse)
+                        progressBar.visibility = View.GONE
+                        tvNoService.visibility = View.GONE
+                        servicesList.visibility = View.VISIBLE
+                        // -1 canceled
+                        if (value.etat != -1) {
+                            nb = nb +1
+                            servicesData.add(
+                                Service(
+                                    user = value.user,
+                                    adresse = value.adresse,
+                                    service = value.service,
+                                    tel = value.tel,
+                                    dateDemande = value.dateDemande,
+                                    databaseKey = it.key!!,
+                                    etat = value.etat,
+                                    userKey = userKey!!,
+                                    volunteer = value.volunteer
+                                )
                             )
-                        )
-                    servicesAdapter.notifyDataSetChanged()
+                        }
+
                 }
+                if(nb == 0) {
+                    servicesList.visibility = View.GONE
+                    tvNoService.visibility = View.VISIBLE
+                }
+                servicesAdapter.notifyDataSetChanged()
+
             }
 
             override fun onChildRemoved(dataSnapshot: DataSnapshot) {
@@ -69,15 +80,24 @@ class ServicesListActivity : AppCompatActivity() {
                     if (servicesData[i].databaseKey == dataSnapshot.key)
                         servicesData.removeAt(i)
                 }
-                servicesAdapter.notifyDataSetChanged()
-                if (servicesData.size == 0) {
+                var nb = 0
+                for(service in servicesData) {
+                    if(service.etat != -1) {
+                        nb = nb+1
+                    }
+                }
+                if (nb == 0) {
                     servicesList.visibility = View.GONE
                     tvNoService.visibility = View.VISIBLE
                 }
+                servicesAdapter.notifyDataSetChanged()
+
+
             }
         })
 
     }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home)
