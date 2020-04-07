@@ -1,4 +1,4 @@
-package com.jendouba.corona
+package com.jendouba.admin
 
 import android.content.Context
 import android.content.Intent
@@ -9,11 +9,8 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import com.google.firebase.database.FirebaseDatabase
-import com.jendouba.corona.R
-import com.jendouba.corona.Service
 import kotlinx.android.synthetic.main.activity_service_details.*
 import kotlinx.android.synthetic.main.activity_service_details.tvServices
-import kotlinx.android.synthetic.main.service_item.*
 
 class ServiceDetailsActivity : AppCompatActivity() {
 
@@ -25,6 +22,7 @@ class ServiceDetailsActivity : AppCompatActivity() {
 
         val serviceData = intent.getSerializableExtra("service_data") as Service
         tvUserName.text = serviceData.user
+        tvCin.text = serviceData.cin
         tvAdresse.text = serviceData.adresse
         tvTel.text = serviceData.tel
         tvServices.text = serviceData.service
@@ -36,27 +34,35 @@ class ServiceDetailsActivity : AppCompatActivity() {
             tvState.text = "في إنتظار التأكيد"
             // pas encore confirmé
             btnDone.visibility = View.GONE
+            volunteer_area.visibility = View.GONE
         } else if (serviceData.etat == 1) {
             // confirmé
             tvState.text = "مؤكد"
             btnConfirm.visibility = View.GONE
             btnCancel.visibility = View.GONE
+            notice.visibility = View.GONE
+            volunteer_area.visibility = View.VISIBLE
             if(!serviceData.volunteer.equals(volunteer)) {
                 btnDone.visibility = View.GONE
             } else {
                 btnDone.visibility = View.VISIBLE
             }
+            volunteer_name.text = serviceData.volunteer.subSequence(0,serviceData.volunteer.lastIndexOf("@"))
         } else if (serviceData.etat == -1) {
             tvState.text = "ملغي"
             tvState.setTextColor(Color.parseColor("#FF0000"))
             btnConfirm.visibility = View.GONE
             btnCancel.visibility = View.GONE
             btnDone.visibility = View.GONE
+            notice.visibility = View.GONE
         } else if (serviceData.etat == 2) {
             tvState.text = "تم الإيصال"
             btnConfirm.visibility = View.GONE
             btnCancel.visibility = View.GONE
             btnDone.visibility = View.GONE
+            notice.visibility = View.GONE
+            volunteer_area.visibility = View.VISIBLE
+            volunteer_name.text = serviceData.volunteer.subSequence(0,serviceData.volunteer.lastIndexOf("@"))
         }
 
         val database = FirebaseDatabase.getInstance().reference.child(serviceData.userKey).child("services").child(serviceData.databaseKey)
@@ -66,9 +72,10 @@ class ServiceDetailsActivity : AppCompatActivity() {
             database.child("volunteer").setValue(volunteer)
             btnConfirm.visibility = View.GONE
             btnCancel.visibility = View.GONE
+            notice.visibility = View.GONE
             btnDone.visibility = View.VISIBLE
             finish()
-            startActivity(Intent(this, ServicesListActivity::class.java))
+            startActivity(Intent(this, ServicesListActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
         }
 
         btnDone.setOnClickListener {
@@ -77,8 +84,9 @@ class ServiceDetailsActivity : AppCompatActivity() {
             btnConfirm.visibility = View.GONE
             btnCancel.visibility = View.GONE
             btnDone.visibility = View.GONE
+            notice.visibility = View.GONE
             finish()
-            startActivity(Intent(this, ServicesListActivity::class.java))
+            startActivity(Intent(this, ServicesListActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
         }
 
         btnCancel.setOnClickListener {

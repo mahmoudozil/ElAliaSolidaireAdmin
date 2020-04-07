@@ -1,9 +1,10 @@
-package com.jendouba.corona
+package com.jendouba.admin
 
 import java.io.Serializable
 
 class Service() : Serializable{
 
+    var cin: String = ""
     var user:String = ""
     var adresse:String = ""
     var tel:String = ""
@@ -14,7 +15,8 @@ class Service() : Serializable{
     var userKey:String = ""
     var volunteer: String = ""
 
-    constructor(user: String, adresse: String, tel: String, service: String, dateDemande: String, databaseKey: String, etat: Int, userKey:String, volunteer: String) : this() {
+    constructor(cin: String, user: String, adresse: String, tel: String, service: String, dateDemande: String, databaseKey: String, etat: Int, userKey:String, volunteer: String) : this() {
+        this.cin = cin
         this.user = user
         this.adresse = adresse
         this.tel = tel

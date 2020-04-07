@@ -1,16 +1,12 @@
-package com.jendouba.corona
+package com.jendouba.admin
 
 import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.jendouba.corona.R
-import com.jendouba.corona.ServiceDetailsActivity
-import kotlinx.android.synthetic.main.activity_service_details.*
 import kotlin.collections.ArrayList
 
 class ServiceAdapter(var context: Context) : BaseAdapter() {
@@ -25,13 +21,11 @@ class ServiceAdapter(var context: Context) : BaseAdapter() {
     override fun getView(position: Int, view: View?, parent: ViewGroup?): View {
 
         var convertView = LayoutInflater.from(parent?.context).inflate(R.layout.service_item, parent, false)
-        var tvService : TextView = convertView.findViewById(R.id.tvServices)
         var tvDate : TextView = convertView.findViewById(R.id.tvDate)
         var tvUser : TextView = convertView.findViewById(R.id.tvUser)
         var serviceState : TextView = convertView.findViewById(R.id.serviceState)
 
         val selectedService = this.servicesList[position]
-        //tvService.text = selectedService.service
         tvDate.text = selectedService.dateDemande
         tvUser.text = selectedService.user
         serviceState.text = getState(selectedService.etat)

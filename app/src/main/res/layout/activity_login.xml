@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg1"
-    tools:context="com.jendouba.corona.LoginActivity">
+    tools:context="com.jendouba.admin.LoginActivity"
+    android:id="@+id/linearLayout3"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -96,10 +98,22 @@
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/almarai"
             android:gravity="center"
-            android:text="مدينة جندوبة"
+            android:text="ولاية جندوبة"
             android:textColor="#fff"
             android:textSize="20sp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:bottom="5dp"
+            android:fontFamily="@font/almarai"
+            android:gravity="center"
+            android:text="Developed by\nMahmoud TURKI"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+
+
     </LinearLayout>
+
 
 </LinearLayout>

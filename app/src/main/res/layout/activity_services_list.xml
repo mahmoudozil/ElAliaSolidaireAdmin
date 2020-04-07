@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="com.jendouba.corona.ServicesListActivity">
+    tools:context="com.jendouba.admin.ServicesListActivity">
 
     <ListView
         android:id="@+id/servicesList"

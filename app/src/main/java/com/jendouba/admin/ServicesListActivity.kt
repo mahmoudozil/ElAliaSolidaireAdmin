@@ -1,4 +1,4 @@
-package com.jendouba.corona
+package com.jendouba.admin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,9 @@ import android.view.MenuItem
 import android.view.View
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_services_list.*
+import java.util.*
+import java.util.stream.Collector
+import java.util.stream.Collectors
 
 class ServicesListActivity : AppCompatActivity() {
 
@@ -17,13 +20,25 @@ class ServicesListActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         var servicesData = arrayListOf<Service>()
+
         val servicesAdapter = ServiceAdapter(this)
         servicesAdapter.setData(servicesData)
         servicesList.adapter = servicesAdapter
         val database = FirebaseDatabase.getInstance().reference
 
+        database.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(databaseError: DatabaseError) {
 
+            }
 
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.children.count() == 0) {
+                    progressBar.visibility = View.GONE
+                    servicesList.visibility = View.GONE
+                    tvNoService.visibility = View.VISIBLE
+                }
+            }
+        })
         database.addChildEventListener(object : ChildEventListener {
             override fun onCancelled(error: DatabaseError) { // Failed to read value
 
@@ -38,10 +53,14 @@ class ServicesListActivity : AppCompatActivity() {
             }
 
             override fun onChildAdded(dataSnapshot: DataSnapshot, previousChildName: String?) {
-                val userKey = dataSnapshot.key
-                Log.d("children" , "e")
-                var nb = 0
-
+                if (dataSnapshot.children.count() == 0) {
+                    progressBar.visibility = View.GONE
+                    servicesList.visibility = View.GONE
+                    tvNoService.visibility = View.VISIBLE
+                } else {
+                    val userKey = dataSnapshot.key
+                    Log.d("children", "e")
+                    var nb = 0
                     dataSnapshot.child("services").children.forEach {
                         val value = it.getValue(Service::class.java)!!
                         Log.d("value", value.adresse)
@@ -49,10 +68,12 @@ class ServicesListActivity : AppCompatActivity() {
                         tvNoService.visibility = View.GONE
                         servicesList.visibility = View.VISIBLE
                         // -1 canceled
-                        if (value.etat != -1) {
+                        if(value.etat != -1) {
                             nb = nb +1
                             servicesData.add(
+                                0,
                                 Service(
+                                    cin = value.cin,
                                     user = value.user,
                                     adresse = value.adresse,
                                     service = value.service,
@@ -65,14 +86,15 @@ class ServicesListActivity : AppCompatActivity() {
                                 )
                             )
                         }
+                    }
+                    if(nb == 0) {
+                        progressBar.visibility = View.GONE
+                        servicesList.visibility = View.GONE
+                        tvNoService.visibility = View.VISIBLE
+                    }
 
+                    servicesAdapter.notifyDataSetChanged()
                 }
-                if(nb == 0) {
-                    servicesList.visibility = View.GONE
-                    tvNoService.visibility = View.VISIBLE
-                }
-                servicesAdapter.notifyDataSetChanged()
-
             }
 
             override fun onChildRemoved(dataSnapshot: DataSnapshot) {
@@ -80,18 +102,11 @@ class ServicesListActivity : AppCompatActivity() {
                     if (servicesData[i].databaseKey == dataSnapshot.key)
                         servicesData.removeAt(i)
                 }
-                var nb = 0
-                for(service in servicesData) {
-                    if(service.etat != -1) {
-                        nb = nb+1
-                    }
-                }
-                if (nb == 0) {
+                servicesAdapter.notifyDataSetChanged()
+                if(servicesData.size==0){
                     servicesList.visibility = View.GONE
                     tvNoService.visibility = View.VISIBLE
                 }
-                servicesAdapter.notifyDataSetChanged()
-
 
             }
         })
