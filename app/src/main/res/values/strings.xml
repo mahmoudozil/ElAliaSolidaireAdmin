@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Jendouba Volunteers</string>
+    <string-array name="cities">
+        <item>جندوبة</item>
+        <item>جندوبة الشمالية</item>
+        <item>طبرقة</item>
+        <item>بوسالم</item>
+        <item>فرنانة</item>
+        <item>عين دراهم</item>
+        <item>وادي مليز</item>
+        <item>غار الدماء</item>
+        <item>بلطة بوعوان</item>
+    </string-array>
 </resources>

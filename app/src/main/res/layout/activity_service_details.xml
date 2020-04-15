@@ -31,7 +31,7 @@
                     android:fontFamily="@font/almarai"
                     android:text="إسم المواطن : "
                     android:textColor="#2196F3"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/tvUserName"
@@ -42,7 +42,7 @@
                     android:fontFamily="@font/almarai"
                     android:text=""
                     android:textColor="#3F4D58"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
 
             </LinearLayout>
 
@@ -58,8 +58,7 @@
                     android:fontFamily="@font/almarai"
                     android:text="رقم بطاقة التعريف الوطنية : "
                     android:textColor="#2196F3"
-                    android:textSize="20sp" />
-
+                    android:textSize="15sp" />
 
             </LinearLayout>
         <LinearLayout
@@ -77,13 +76,12 @@
                 android:fontFamily="@font/almarai"
                 android:text=""
                 android:textColor="#3F4D58"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
         </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -93,10 +91,51 @@
                     android:fontFamily="@font/almarai"
                     android:text="العنوان :"
                     android:textColor="#2196F3"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
+
+
+
+            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tvAdresse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="6dp"
+                android:fontFamily="@font/almarai"
+                android:text=""
+                android:textColor="#3F4D58"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tvAdresse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="@font/almarai"
+                    android:text="المعتمدية :"
+                    android:textColor="#2196F3"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tvCity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
@@ -104,10 +143,8 @@
                     android:fontFamily="@font/almarai"
                     android:text=""
                     android:textColor="#3F4D58"
-                    android:textSize="20sp" />
-
+                    android:textSize="15sp" />
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -121,7 +158,7 @@
                     android:fontFamily="@font/almarai"
                     android:text="رقم الهاتف :"
                     android:textColor="#2196F3"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/tvTel"
@@ -132,7 +169,7 @@
                     android:fontFamily="@font/almarai"
                     android:text=""
                     android:textColor="#3F4D58"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
 
             </LinearLayout>
 
@@ -144,7 +181,7 @@
                 android:fontFamily="@font/almarai"
                 android:text="الطلبات :"
                 android:textColor="#2196F3"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/tvServices"
@@ -154,7 +191,7 @@
                 android:fontFamily="@font/almarai"
                 android:text=""
                 android:textColor="#3F4D58"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -168,7 +205,7 @@
                     android:fontFamily="@font/almarai"
                     android:text="الحالة : "
                     android:textColor="#2196F3"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
 
 
                 <TextView
@@ -194,7 +231,7 @@
                 android:fontFamily="@font/almarai"
                 android:text="الرجاء الاتصال بالمواطن قبل التأكيد أو الالغاء"
                 android:textColor="#2196F3"
-                android:textSize="10sp" />
+                android:textSize="12sp" />
 
         </LinearLayout>
 
@@ -212,7 +249,7 @@
                     android:fontFamily="@font/almarai"
                     android:text="تأكيد الطلب"
                     android:textColor="#fff"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     android:textStyle="bold" />
 
                 <Button
@@ -224,7 +261,7 @@
                     android:fontFamily="@font/almarai"
                     android:text="إلغاء الطلب"
                     android:textColor="#fff"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     android:textStyle="bold" />
 
                 <Button
@@ -236,7 +273,7 @@
                     android:fontFamily="@font/almarai"
                     android:text="تم الايصال"
                     android:textColor="#fff"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     android:textStyle="bold" />
 
 
@@ -250,7 +287,7 @@
             android:fontFamily="@font/almarai"
             android:text="المتطوع الذي بصدد إنجاز الطلب :  \n"
             android:textColor="#2196F3"
-            android:textSize="20sp" />
+            android:textSize="15sp" />
             <LinearLayout
                 android:id="@+id/volunteer_area"
                 android:layout_width="wrap_content"
@@ -264,7 +301,7 @@
                 android:fontFamily="@font/almarai"
                 android:text=""
                 android:textColor="#000"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
         </LinearLayout>
 
         </LinearLayout>

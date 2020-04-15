@@ -6,13 +6,30 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="com.jendouba.admin.ServicesListActivity">
+    tools:context="com.jendouba.volunteer.ServicesListActivity">
 
     <ListView
         android:id="@+id/servicesList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone" />
+
+<LinearLayout
+    android:id="@+id/progressBar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    >
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminateTint="#2196F3"
+        android:progressTint="#2196F3"
+        android:visibility="visible"/>
+</LinearLayout>
+
 
     <TextView
         android:id="@+id/tvNoService"
@@ -22,14 +39,7 @@
         android:gravity="center"
         android:text="لا يوجد أي طلب"
         android:textColor="#2196F3"
-        android:textSize="22sp"
+        android:textSize="20sp"
         android:visibility="gone" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:indeterminateTint="#2196F3"
-        android:progressTint="#2196F3" />
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.jendouba.admin
+package com.jendouba.volunteer
 
 import android.content.Context
 import android.content.Intent
@@ -31,12 +31,12 @@ class LoginActivity : AppCompatActivity() {
 
         btnLogin.setOnClickListener {
 
-            if(editUserName.text.toString().isEmpty() || editPassword.text.toString().isEmpty()) {
+            if(editUserName.text.toString().trim().isEmpty() || editPassword.text.toString().trim().isEmpty()) {
                 tvError.text = "يرجى ملء كل الخانات"
                 tvError.visibility = View.VISIBLE
             }else {
-                val login = editUserName.text.toString()
-                val password = editPassword.text.toString()
+                val login = editUserName.text.toString().trim()
+                val password = editPassword.text.toString().trim()
                 btnLogin.isEnabled = false
                 btnLogin.text = "جاري التثبيت..."
                 auth.signInWithEmailAndPassword(login, password)

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg1"
-    tools:context="com.jendouba.admin.MainActivity">
+    tools:context="com.jendouba.volunteer.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,16 +23,6 @@
             android:fontFamily="@font/almarai"
             android:gravity="center"
             android:text=""
-            android:textColor="#fff"
-            android:textSize="26sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="@font/almarai"
-            android:gravity="center"
-            android:text="أطلب الخدمة إلى مستحقها و أحنا نجيبوهالك"
             android:textColor="#fff"
             android:textSize="26sp" />
 
@@ -65,9 +55,15 @@
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/almarai"
             android:gravity="center"
-            android:text="ولاية جندوبة"
+            android:text="الرجاء إختيار المعتمدية"
             android:textColor="#fff"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
+        <Spinner
+            android:id="@+id/cities"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_background"
+            />
 
         <TextView
             android:layout_width="208dp"
@@ -77,7 +73,7 @@
             android:gravity="center"
             android:text="Developed by\n Mahmoud TURKI"
             android:textColor="#fff"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 

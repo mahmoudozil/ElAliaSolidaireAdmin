@@ -1,4 +1,4 @@
-package com.jendouba.admin
+package com.jendouba.volunteer
 
 import android.content.Context
 import android.content.Intent
@@ -24,6 +24,7 @@ class ServiceDetailsActivity : AppCompatActivity() {
         tvUserName.text = serviceData.user
         tvCin.text = serviceData.cin
         tvAdresse.text = serviceData.adresse
+        tvCity.text = serviceData.city
         tvTel.text = serviceData.tel
         tvServices.text = serviceData.service
         val volunteer = getSharedPreferences("volunteer_data", Context.MODE_PRIVATE).getString("volunteer_email", "").toString()
@@ -32,16 +33,13 @@ class ServiceDetailsActivity : AppCompatActivity() {
 
         if (serviceData.etat == 0) {
             tvState.text = "في إنتظار التأكيد"
-            // pas encore confirmé
             btnDone.visibility = View.GONE
-            volunteer_area.visibility = View.GONE
+            volunteer_name.text = "هذا الطلب شاغر ! يمكنك إنجازه"
         } else if (serviceData.etat == 1) {
-            // confirmé
             tvState.text = "مؤكد"
             btnConfirm.visibility = View.GONE
             btnCancel.visibility = View.GONE
             notice.visibility = View.GONE
-            volunteer_area.visibility = View.VISIBLE
             if(!serviceData.volunteer.equals(volunteer)) {
                 btnDone.visibility = View.GONE
             } else {
@@ -61,7 +59,6 @@ class ServiceDetailsActivity : AppCompatActivity() {
             btnCancel.visibility = View.GONE
             btnDone.visibility = View.GONE
             notice.visibility = View.GONE
-            volunteer_area.visibility = View.VISIBLE
             volunteer_name.text = serviceData.volunteer.subSequence(0,serviceData.volunteer.lastIndexOf("@"))
         }
 

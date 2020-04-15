@@ -1,5 +1,6 @@
-package com.jendouba.admin
+package com.jendouba.volunteer
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -7,9 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_services_list.*
-import java.util.*
-import java.util.stream.Collector
-import java.util.stream.Collectors
+import java.lang.Thread.sleep
 
 class ServicesListActivity : AppCompatActivity() {
 
@@ -26,19 +25,12 @@ class ServicesListActivity : AppCompatActivity() {
         servicesList.adapter = servicesAdapter
         val database = FirebaseDatabase.getInstance().reference
 
-        database.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onCancelled(databaseError: DatabaseError) {
+        progressBar.visibility = View.VISIBLE
+        servicesList.visibility = View.GONE
+        tvNoService.visibility = View.VISIBLE
+        tvNoService.setText("لا يوجد أي طلب \n\nفي معتمدية\n\n"+ getSharedPreferences("volunteer_data", Context.MODE_PRIVATE).getString("city", "جندوبة").toString())
 
-            }
 
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.children.count() == 0) {
-                    progressBar.visibility = View.GONE
-                    servicesList.visibility = View.GONE
-                    tvNoService.visibility = View.VISIBLE
-                }
-            }
-        })
         database.addChildEventListener(object : ChildEventListener {
             override fun onCancelled(error: DatabaseError) { // Failed to read value
 
@@ -49,33 +41,34 @@ class ServicesListActivity : AppCompatActivity() {
             }
 
             override fun onChildChanged(dataSnapshot: DataSnapshot, previousChildName: String?) {
-
+                Log.d("hey changed", "change")
             }
 
             override fun onChildAdded(dataSnapshot: DataSnapshot, previousChildName: String?) {
-                if (dataSnapshot.children.count() == 0) {
+                progressBar.visibility = View.GONE
+                if (dataSnapshot.children.count() != 0 && !containsOnlyCancelledOrders(dataSnapshot)) {
                     progressBar.visibility = View.GONE
-                    servicesList.visibility = View.GONE
-                    tvNoService.visibility = View.VISIBLE
-                } else {
+                    tvNoService.visibility = View.GONE
+                    servicesList.visibility = View.VISIBLE
                     val userKey = dataSnapshot.key
-                    Log.d("children", "e")
-                    var nb = 0
                     dataSnapshot.child("services").children.forEach {
                         val value = it.getValue(Service::class.java)!!
-                        Log.d("value", value.adresse)
-                        progressBar.visibility = View.GONE
-                        tvNoService.visibility = View.GONE
-                        servicesList.visibility = View.VISIBLE
+                        Log.d("city: ", value.city)
+                        Log.d("city shared : ", getSharedPreferences("volunteer_data", Context.MODE_PRIVATE).getString("city", "جندوبة").toString())
+                        val x = (value.city == getSharedPreferences("volunteer_data", Context.MODE_PRIVATE).getString("city", "جندوبة").toString())
+                        Log.d("yet3ada? :", x.toString())
+                        Log.d("etat? :", value.etat.toString())
                         // -1 canceled
-                        if(value.etat != -1) {
-                            nb = nb +1
+                        if(value.etat != -1 && value.city == getSharedPreferences("volunteer_data", Context.MODE_PRIVATE).getString("city", "جندوبة").toString()) {
+                            Log.d("hello" ,"inside")
+
                             servicesData.add(
                                 0,
                                 Service(
                                     cin = value.cin,
                                     user = value.user,
                                     adresse = value.adresse,
+                                    city = value.city,
                                     service = value.service,
                                     tel = value.tel,
                                     dateDemande = value.dateDemande,
@@ -86,14 +79,10 @@ class ServicesListActivity : AppCompatActivity() {
                                 )
                             )
                         }
-                    }
-                    if(nb == 0) {
-                        progressBar.visibility = View.GONE
-                        servicesList.visibility = View.GONE
-                        tvNoService.visibility = View.VISIBLE
-                    }
 
+                    }
                     servicesAdapter.notifyDataSetChanged()
+
                 }
             }
 
@@ -102,15 +91,26 @@ class ServicesListActivity : AppCompatActivity() {
                     if (servicesData[i].databaseKey == dataSnapshot.key)
                         servicesData.removeAt(i)
                 }
-                servicesAdapter.notifyDataSetChanged()
                 if(servicesData.size==0){
                     servicesList.visibility = View.GONE
                     tvNoService.visibility = View.VISIBLE
+                    tvNoService.setText("لا يوجد أي طلب \n\nفي معتمدية\n\n"+ getSharedPreferences("volunteer_data", Context.MODE_PRIVATE).getString("city", "جندوبة").toString())
                 }
+                servicesAdapter.notifyDataSetChanged()
 
             }
         })
 
+    }
+
+    private fun containsOnlyCancelledOrders(dataSnapshot: DataSnapshot): Boolean {
+        dataSnapshot.child("services").children.forEach {
+            val value = it.getValue(Service::class.java)!!
+            if(value.etat != -1 && value.city == getSharedPreferences("volunteer_data", Context.MODE_PRIVATE).getString("city", "جندوبة").toString()) {
+                return false;
+            }
+        }
+        return true;
     }
 
 

@@ -1,4 +1,4 @@
-package com.jendouba.admin
+package com.jendouba.volunteer
 
 import android.content.Context
 import android.content.Intent

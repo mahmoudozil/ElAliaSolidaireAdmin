@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg1"
-    tools:context="com.jendouba.admin.LoginActivity"
+    tools:context="com.jendouba.volunteer.LoginActivity"
     android:id="@+id/linearLayout3"
     >
 
@@ -36,12 +36,12 @@
             android:text="إسم المستخدم"
             android:textColor="#fff"
             android:layout_gravity="right"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/editUserName"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             android:background="@drawable/edit_text_border"
             android:hint=""
             android:layout_marginBottom="10dp"
@@ -57,12 +57,12 @@
             android:fontFamily="@font/almarai"
             android:text="كلمة السر"
             android:textColor="#fff"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/editPassword"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             android:background="@drawable/edit_text_border"
             android:hint=""
             android:layout_marginBottom="25dp"
@@ -90,7 +90,7 @@
             android:text="دخول"
             android:textColor="#fff"
             android:textFontWeight="900"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
         <TextView
             android:layout_width="wrap_content"
@@ -100,7 +100,7 @@
             android:gravity="center"
             android:text="ولاية جندوبة"
             android:textColor="#fff"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -110,7 +110,7 @@
             android:gravity="center"
             android:text="Developed by\nMahmoud TURKI"
             android:textColor="#fff"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
 
     </LinearLayout>
